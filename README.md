@@ -3,9 +3,9 @@
 ## CMS server
 web & chatbot 's content management server 
 ```python
-├─/Demo3
+├─Demo3
 │     ├──
-│     /offerImage
+│      offerImage
 │        ├── A2OFF0001.jpg
 │        ├── A2OFF0002.jpg
 │        ├── A2OFF0002.jpg
