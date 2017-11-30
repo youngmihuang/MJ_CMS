@@ -1,6 +1,6 @@
 version: '3.0'
 services:
-  cms_api:
+  youngmi_cms:
     image: cms_api:1.0
     build: ./Demo3
     depends_on:
