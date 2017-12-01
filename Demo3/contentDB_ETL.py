@@ -30,6 +30,7 @@ def offerDB_tran(data):
         meta = {}
         meta["bannerImage"] = "https://youngmihuang.github.io/MJ_CMS/Demo3" + data["bannerImage"][row]
         meta["offerLink"] = data["offerLink"][row]
+        meta["offerName"] = data["offerName"][row]
         offer["metaData"] = meta
         offer_DB.append(offer)
     return(offer_DB)
