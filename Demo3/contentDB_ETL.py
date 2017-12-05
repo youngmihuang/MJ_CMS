@@ -28,7 +28,7 @@ def offerDB_tran(data):
         offer["itemId"] = data["moduleId"][row] + str(data["offerId"][row])
         #meta內放置的內容
         meta = {}
-        meta["bannerImage"] = "https://youngmihuang.github.io/MJ_CMS/Demo3" + data["bannerImage"][row]
+        meta["bannerImage"] = "https://youngmihuang.github.io/MJ_CMS/Demo3/adjust" + data["bannerImage"][row]
         meta["offerLink"] = data["offerLink"][row]
         offer["metaData"] = meta
         offer_DB.append(offer)
