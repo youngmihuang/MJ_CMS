@@ -7,15 +7,10 @@ import json
 import redis
 import xlrd
 
-# offer_content
-content = pd.read_excel("offerData_image.xlsm")
 # 設定Redis
 # redis_ip = "localhost"
 redis_ip = "redis"
 conn = redis.Redis(host=redis_ip, port=6379, db=0)
-
-
-
 
 # offer to dict
 def offerDB_tran(data):
@@ -28,7 +23,7 @@ def offerDB_tran(data):
         offer["itemId"] = data["moduleId"][row] + str(data["offerId"][row])
         #meta內放置的內容
         meta = {}
-        meta["bannerImage"] = "https://youngmihuang.github.io/MJ_CMS/Demo3" + data["bannerImage"][row]
+        meta["bannerImage"] = "https://youngmihuang.github.io/MJ_CMS/Demo3/adjust" + data["bannerImage"][row]
         meta["offerLink"] = data["offerLink"][row]
         meta["offerName"] = data["offerName"][row]
         offer["metaData"] = meta
@@ -39,12 +34,14 @@ def offerDB_tran(data):
 def contentDB_ETL(data):
 
     for i in range(len(data)):
-        content ={}
-        content["offerId"] = data[i]["offerId"]
-        content["moduleId"] = data[i]["moduleId"]
-        content["metaData"] = data[i]["metaData"]
-        conn.set(data[i]["itemId"].decode("utf-8"),json.dumps(content, ensure_ascii=False))
+        contentDB ={}
+        contentDB["offerId"] = data[i]["offerId"]
+        contentDB["moduleId"] = data[i]["moduleId"]
+        contentDB["metaData"] = data[i]["metaData"]
+        conn.set(data[i]["itemId"].decode("utf-8"),json.dumps(contentDB, ensure_ascii=False))
 
 # put offerData to redis
+# offer_content
+content = pd.read_excel("offerData_image.xlsm")
 offer = offerDB_tran(content)
 offer_to_Redis = contentDB_ETL(offer)
