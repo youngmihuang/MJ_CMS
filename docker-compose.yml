@@ -4,11 +4,11 @@ services:
     image: cms_api:1.0
     build: ./Demo3
     depends_on:
-     - redis
+     - redis_huang
     ports:
      - "6020:6020"
     links:
-     - "redis:redis"
+     - redis_huang:redis_huang
 
-  redis:
+  redis_huang:
     image: redis:latest

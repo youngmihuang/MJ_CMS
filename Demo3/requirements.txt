@@ -3,3 +3,4 @@ pandas
 redis
 numpy
 xlrd
+requests

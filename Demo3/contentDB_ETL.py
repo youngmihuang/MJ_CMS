@@ -9,7 +9,7 @@ import xlrd
 
 # 設定Redis
 # redis_ip = "localhost"
-redis_ip = "redis"
+redis_ip = "redis_huang"
 conn = redis.Redis(host=redis_ip, port=6379, db=0)
 
 # offer to dict

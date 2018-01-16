@@ -9,35 +9,47 @@ from flask import Flask ,request, jsonify
 
 import time
 import redis
+import requests
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
-redis_ip = "redis"
+
+redis_ip = "redis_huang"
 # redis_ip = "localhost"
-redis_store = redis.Redis(host= redis_ip, port=6379, db=0)
+pool = redis.ConnectionPool(host= redis_ip, port=6379, db=0, socket_timeout =  0.5)
+redis_store = redis.Redis(connection_pool = pool)
 # redis_store = redis.Redis(host="localhost", port=6379, db=0)
 
 
+@app.route('/offer', methods = ['POST'])
+def get_offer():
+    try:
+        content = request.get_json(force=True)
+        resp = jsonify([json.loads(redis_store.get(c["moduleId"]+c["offerId"])) for c in content])
+        resp.headers['Content_Type'] = 'application/json; charset=utf-8'
+        resp.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = 'POST'
 
-@app.route("/offer",methods=["POST"])
-def getItemId():
-  content = request.get_json(force=True)
-  return jsonify([json.loads(redis_store.get(c["moduleId"]+c["offerId"])) for c in content])
+        return resp
+
+    except:
+        return jsonify([{'error': 'Your request moduleId or offerId not exist, no results', 'status': 404}])
 
 
+# resp.headers['Content_Type'] = 'application/json'
 
-# get one metadata at one time
-# @app.route("/offer",methods=["GET"])
-# def getItemId():
-#   moduleId = request.args.get("moduleId")
-#   print moduleId
-#   offerId = request.args.get("offerId")
-#   print type(offerId)
-#   metaData = (redis_store.get(moduleId + offerId))
-#   metaData = json.loads(metaData)
-#   res = jsonify(metaData) #在網頁上轉為json
-#   res.headers["Content-Type"] = "application/json; charset=utf-8"
-#   return res
+# def hello2():
+#   try:
+#     response = requests.get('http://localhost:6020/offertest', timeout=0.4)
+#   except requests.exceptions.Timeout:
+#     return 'timeout'
+#   return response.text
+
+
 
 
 if __name__ == "__main__":
