@@ -20,7 +20,7 @@ web & chatbot 's content management server
 └──docker-compose.yml
 ```
 
-## 使用方式
+## Usage
 ### Demo3資料夾
 * Dockerfile
 * offerImage 資料夾包含所有圖檔(`.jpg`)  -> for web & chatbot channel 使用
@@ -28,3 +28,6 @@ web & chatbot 's content management server
 
 ### Docker-compose.yml
 * 已測試能成功啟動服務: docker-compose up
+
+### Testing
+* [Test Document](https://hackmd.io/KwDgnA7ApgTADAQwLQCMJxUgLHAZrpBSKVAZjgBMwA2aimU6qIA=)
