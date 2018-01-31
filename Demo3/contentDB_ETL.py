@@ -7,8 +7,7 @@ import json
 import redis
 import xlrd
 
-# 設定Redis
-# redis_ip = "localhost"
+# set up redis
 redis_ip = "redis_huang"
 conn = redis.Redis(host=redis_ip, port=6379, db=0)
 
@@ -21,7 +20,7 @@ def offerDB_tran(data):
         offer["offerId"] = data["offerId"][row]
         offer["moduleId"] = data["moduleId"][row]
         offer["itemId"] = data["moduleId"][row] + str(data["offerId"][row])
-        #meta內放置的內容
+        # metadata
         meta = {}
         meta["bannerImage"] = "https://youngmihuang.github.io/MJ_CMS/Demo3/adjust" + data["bannerImage"][row]
         meta["offerLink"] = data["offerLink"][row]
@@ -38,7 +37,7 @@ def contentDB_ETL(data):
         contentDB["offerId"] = data[i]["offerId"]
         contentDB["moduleId"] = data[i]["moduleId"]
         contentDB["metaData"] = data[i]["metaData"]
-        conn.set(data[i]["itemId"].decode("utf-8"),json.dumps(contentDB, ensure_ascii=False))
+        conn.set(data[i]["itemId"].decode("utf-8"),json.dumps(contentDB, ensure_ascii=False)) # to json
 
 # put offerData to redis
 # offer_content
