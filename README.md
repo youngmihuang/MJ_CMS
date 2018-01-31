@@ -27,7 +27,8 @@ web & chatbot 's content management server
 │     ├── cms_test_test.csv      #test data for jmeter
 │     └── unittest.py            #unit test
 │
-└──docker-compose.yml
+│─index.html                     #image url 
+└─docker-compose.yml             #docker-compose file
 ```
 
 ## Usage
