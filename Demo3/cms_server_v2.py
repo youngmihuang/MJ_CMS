@@ -1,13 +1,9 @@
 
 # coding: utf-8
-
 import pandas as pd
 import json
-import datetime
-import calendar
 from flask import Flask ,request, jsonify
 
-import time
 import redis
 import requests
 import sys
@@ -17,13 +13,12 @@ sys.setdefaultencoding('utf8')
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 
+# set up redis ip
 redis_ip = "redis_huang"
-# redis_ip = "localhost"
 pool = redis.ConnectionPool(host= redis_ip, port=6379, db=0, socket_timeout =  0.5)
 redis_store = redis.Redis(connection_pool = pool)
-# redis_store = redis.Redis(host="localhost", port=6379, db=0)
 
-
+# get offer from redis successfully or return 404 when sth wrong. 
 @app.route('/offer', methods = ['POST'])
 def get_offer():
     try:
@@ -38,18 +33,6 @@ def get_offer():
 
     except:
         return jsonify([{'error': 'Your request moduleId or offerId not exist, no results', 'status': 404}])
-
-
-# resp.headers['Content_Type'] = 'application/json'
-
-# def hello2():
-#   try:
-#     response = requests.get('http://localhost:6020/offertest', timeout=0.4)
-#   except requests.exceptions.Timeout:
-#     return 'timeout'
-#   return response.text
-
-
 
 
 if __name__ == "__main__":
