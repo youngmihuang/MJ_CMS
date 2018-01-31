@@ -1,33 +1,43 @@
-# MJ_CMS
+# MJ_CMS (POC)
 
 ## CMS server
 web & chatbot 's content management server 
+
+### Structure
 ```python
 ├─Demo3
 │     ├──
-│      offerImage
+│      adjust                    #all the images that cms server needed
 │        ├── A2OFF0001.jpg
 │        ├── A2OFF0002.jpg
 │        ├── A2OFF0002.jpg
 │        .........
 │        .........
 │
-│     ├── Dockerfile
-│     ├── cms_server_v2.py
-│     ├── contentDB_ETL.py
-│     └── offerData_image.xlsm
-│  
+│     ├── Dockerfile             #dockerfile
+│     ├── cms_server_v2.py       #flask server
+│     ├── contentDB_ETL.py       #content raw metadata to redis
+│     └── offerData_image.xlsm   #content raw metadata
+│
+│
+├─CMS_Test                       #stress test and unit test 
+│     ├── cms_test_aws.jmx       #jmeter scipt for stress testing (aws)
+│     ├── cms_test_azure.jmx     #jmeter scipt for stress testing (azure)
+│     ├── cms_test_gcp.jmx       #jmeter scipt for stress testing (gcp)
+│     ├── cms_test_test.csv      #test data for jmeter
+│     └── unittest.py            #unit test
+│
 └──docker-compose.yml
 ```
 
 ## Usage
-### Demo3資料夾
-* Dockerfile
-* offerImage 資料夾包含所有圖檔(`.jpg`)  -> for web & chatbot channel 使用
+### Demo3 
+use docker to build images & container.
+``` 
+$ docker-compose up
+```
 
-
-### Docker-compose.yml
-* 已測試能成功啟動服務: docker-compose up
-
-### Testing
+### CMS_test
+* stress test and unittest were included
+* stress test: jmeter 
 * [Test Document](https://hackmd.io/KwDgnA7ApgTADAQwLQCMJxUgLHAZrpBSKVAZjgBMwA2aimU6qIA=)
