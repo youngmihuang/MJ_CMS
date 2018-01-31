@@ -17,7 +17,8 @@ web & chatbot 's content management server
 │     ├── Dockerfile             #dockerfile
 │     ├── cms_server_v2.py       #flask server
 │     ├── contentDB_ETL.py       #content raw metadata to redis
-│     └── offerData_image.xlsm   #content raw metadata
+│     ├── offerData_image.xlsm   #content raw metadata
+│     └── requirements.txt       #docker requirements
 │
 │
 ├─CMS_Test                       #stress test and unit test 
