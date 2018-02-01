@@ -41,6 +41,6 @@ def contentDB_ETL(data):
 
 # put offerData to redis
 # offer_content
-content = pd.read_excel("offerData_image.xlsm")
+content = pd.read_excel("data/offerData_image.xlsm")
 offer = offerDB_tran(content)
 offer_to_Redis = contentDB_ETL(offer)
