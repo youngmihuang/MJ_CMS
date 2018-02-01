@@ -7,7 +7,11 @@ web & chatbot 's content management server
 ```python
 ├─Demo3
 │     ├──
-│      adjust                    #all the images that cms server needed
+│      data 
+│        └── offerData_image.xlsm   #cms metadata
+│     │     
+│     ├──
+│      img                          #all the images that cms server needed     
 │        ├── A2OFF0001.jpg
 │        ├── A2OFF0002.jpg
 │        ├── A2OFF0002.jpg
@@ -22,10 +26,13 @@ web & chatbot 's content management server
 │
 │
 ├─CMS_Test                       #stress test and unit test 
+│     ├──
+│      data 
+│        └── cms_test_test.csv   #test data for jmeter 
+│     │
 │     ├── cms_test_aws.jmx       #jmeter scipt for stress testing (aws)
 │     ├── cms_test_azure.jmx     #jmeter scipt for stress testing (azure)
 │     ├── cms_test_gcp.jmx       #jmeter scipt for stress testing (gcp)
-│     ├── cms_test_test.csv      #test data for jmeter
 │     └── unittest.py            #unit test
 │
 │─index.html                     #image url 
